@@ -9,16 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-user</artifactId>
+    <artifactId>cloud-search</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>cloud-user-api</module>
-        <module>cloud-user-impl</module>
+        <module>cloud-search-api</module>
+        <module>cloud-search-impl</module>
     </modules>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 
 </project>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
+@RefreshScope
 public class UserInfoService {
 
     @Autowired

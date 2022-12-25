@@ -6,10 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cloud-user" />
+        <module name="cloud-user-api" />
         <module name="cloud-gateway" />
+        <module name="cloud-common" />
+        <module name="cloud-search-api" />
+        <module name="cloud-search-impl" />
+        <module name="cloud-user-impl" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-search" target="11" />
+      <module name="cloud-user" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -10,6 +10,8 @@
     <modules>
         <module>cloud-user</module>
         <module>cloud-gateway</module>
+        <module>cloud-search</module>
+        <module>cloud-common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -96,10 +98,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                    <addResources>true</addResources>
-                </configuration>
             </plugin>
         </plugins>
     </build>

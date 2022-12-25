@@ -9,16 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-user</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cloud-user-api</module>
-        <module>cloud-user-impl</module>
-    </modules>
+    <groupId>com.cloud.study.common</groupId>
+    <artifactId>cloud-common</artifactId>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 
 </project>
