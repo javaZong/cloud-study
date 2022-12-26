@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.cloud.study"})
+@SpringBootApplication
 public class CloudUserApplication {
 
     public static void main(String[] args) {

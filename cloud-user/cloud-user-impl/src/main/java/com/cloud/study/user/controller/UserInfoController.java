@@ -4,7 +4,6 @@ import com.cloud.study.common.resp.ResponseResult;
 import com.cloud.study.user.service.SearchService;
 import com.cloud.study.user.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

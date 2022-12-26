@@ -2,14 +2,16 @@ package com.cloud.study.common.resp;
 
 import com.cloud.study.common.resp.enums.RespCodeEnum;
 
-public final class RespControlData {
-    private final long serverTime;
+public  class RespControlData {
+    private  long serverTime;
 
-    private final int error;
+    private  int error;
 
-    private final String message;
+    private  String message;
 
-    private final String reqId;
+    private  String reqId;
+
+    public RespControlData(){};
 
     private RespControlData(long serverTime, int error, String message, String reqId) {
         this.serverTime = serverTime;
@@ -24,5 +26,21 @@ public final class RespControlData {
 
     public static RespControlData of(int error, String message) {
         return new RespControlData(System.currentTimeMillis(), error, message, "");
+    }
+
+    public long getServerTime() {
+        return serverTime;
+    }
+
+    public int getError() {
+        return error;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getReqId() {
+        return reqId;
     }
 }
