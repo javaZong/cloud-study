@@ -93,7 +93,62 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <!-- 开发环境 -->
+            <id>dev</id>
+            <properties>
+                <environment>dev</environment> <!-- 节点名字environment随意 用于下方指定 -->
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault> <!-- 默认激活该profile节点-->
+            </activation>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>pro</id>
+            <properties>
+                <environment>pro</environment>
+            </properties>
+        </profile>
+    </profiles>
+
+
+
     <build>
+
+        <!-- 打包配置文件管理 -->
+        <resources>
+            <!-- 代码生成器配置文件过滤 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <!-- 所有环境配置文件过滤 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>test/*</exclude>
+                    <exclude>pro/*</exclude>
+                    <exclude>dev/*</exclude>
+                </excludes>
+            </resource>
+            <!-- 指定环境配置文件导入 -->
+            <resource>
+                <directory>src/main/resources/${profiles.active}</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
