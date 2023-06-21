@@ -14,9 +14,13 @@
         <module name="cloud-search-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-dubbo-provider" target="16" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-dubbo-provider" options="" />
       <module name="cloud-gateway" options="" />
     </option>
   </component>
