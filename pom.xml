@@ -12,7 +12,7 @@
         <module>cloud-gateway</module>
         <module>cloud-search</module>
         <module>cloud-common</module>
-        <module>neety-study</module>
+        <module>netty-study</module>
     </modules>
     <packaging>pom</packaging>
 
