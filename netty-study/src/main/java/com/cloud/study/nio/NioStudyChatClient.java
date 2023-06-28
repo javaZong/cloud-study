@@ -41,7 +41,7 @@ public class NioStudyChatClient {
     }
 
     private void sendMsg(String msg) {
-        msg = userName + "说：" + msg;
+        msg = userName + "说:" + msg;
         try {
             socketChannel.write(ByteBuffer.wrap(msg.getBytes()));
         } catch (IOException e) {

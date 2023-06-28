@@ -11,6 +11,13 @@ import io.netty.util.CharsetUtil;
  * 才能被Netty框架所关联，有点类似SpringMVC的适配器模式
  **/
 public class MyServerHandler extends ChannelInboundHandlerAdapter {
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("client "+ctx.channel().remoteAddress()+" connected");
+    }
+
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //获取客户端发送过来的消息

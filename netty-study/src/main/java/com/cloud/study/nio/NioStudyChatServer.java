@@ -83,11 +83,15 @@ public class NioStudyChatServer {
         try {
             // 从selectionKey中获取channel
             socketChannel = (SocketChannel) selectionKey.channel();
-            // 创建1kb的缓冲区
-            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-            //把通道的数据写入到缓冲区,判断返回的count是否大于0，大于0表示读取到了数据
-            int count = socketChannel.read(byteBuffer);
-            if (count > 0) {
+            // 创建缓冲区
+            ByteBuffer byteBuffer = ByteBuffer.allocate(10);
+            while (true) {
+                //把通道的数据写入到缓冲区,判断返回的count是否大于0，大于0表示读取到了数据
+                int count = socketChannel.read(byteBuffer);
+                if (count < 1) {
+                    break;
+                }
+                // 切换为读模式
                 byteBuffer.flip();
                 byte[] bytes = new byte[byteBuffer.remaining()];
                 int i = 0;
@@ -99,6 +103,8 @@ public class NioStudyChatServer {
                 System.out.println("from client:" + msg);
                 System.out.println(msg.length());
                 notifyAllClient(msg, socketChannel);
+                // 切换为写模式
+                byteBuffer.clear();
             }
         } catch (Exception e) {
             try {
