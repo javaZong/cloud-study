@@ -86,11 +86,18 @@ public class NioStudyChatServer {
             // 创建缓冲区
             ByteBuffer byteBuffer = ByteBuffer.allocate(10);
             while (true) {
+
                 //把通道的数据写入到缓冲区,判断返回的count是否大于0，大于0表示读取到了数据
                 int count = socketChannel.read(byteBuffer);
                 if (count < 1) {
+                    // 如果关闭了，就无法监听到这个channel下的读事件了
+//                    selectionKey.cancel();
+                    // 相当于断开了与客户端的连接
+//                    socketChannel.close();
+
                     break;
                 }
+
                 // 切换为读模式
                 byteBuffer.flip();
                 byte[] bytes = new byte[byteBuffer.remaining()];
