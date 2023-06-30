@@ -95,19 +95,19 @@ public class NioStudyChatServer {
 //                    selectionKey.cancel();
                     // 相当于断开了与客户端的连接
 //                    socketChannel.close();
-
                     break;
                 }
                 // 切换为读模式
-                ByteBufferStudy.spilt(byteBuffer);
+
+                String msg = ByteBufferStudy.spilt(byteBuffer);
+                System.out.println(msg);
                 if (byteBuffer.position() == byteBuffer.limit()) {
                     ByteBuffer newByteBuffer = ByteBuffer.allocate(byteBuffer.capacity() << 1);
                     byteBuffer.flip();
                     newByteBuffer.put(byteBuffer);
                     selectionKey.attach(newByteBuffer);
                 }
-
-//                notifyAllClient(msg, socketChannel);
+                notifyAllClient(msg, socketChannel);
             }
         } catch (Exception e) {
             e.printStackTrace();

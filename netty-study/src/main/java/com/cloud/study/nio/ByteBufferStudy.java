@@ -36,9 +36,10 @@ public class ByteBufferStudy {
      *
      * @param byteBuffer
      */
-    public static void spilt(ByteBuffer byteBuffer) {
+    public static String spilt(ByteBuffer byteBuffer) {
         byteBuffer.flip();
         int readLimit = byteBuffer.limit();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < readLimit; i++) {
             if (byteBuffer.get(i) == '\n') {
                 // 当条消息结束
@@ -46,10 +47,10 @@ public class ByteBufferStudy {
                 byte[] bytes = new byte[length];
                 // 会改变position位置
                 byteBuffer.get(bytes);
-                System.out.println(new String(bytes));
+                stringBuilder.append(new String(bytes));
             }
         }
-        // 改为写模式，并将已读取的内容清除掉，未读取的内容移动到数组头部
         byteBuffer.compact();
+        return stringBuilder.toString();
     }
 }

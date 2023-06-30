@@ -15,14 +15,14 @@ import java.util.Scanner;
  *
  * @author zongchao
  */
-public class NioStudyChatClient {
+public class NioStudyChatClient1 {
     private Selector selector;
 
     private SocketChannel socketChannel;
 
     private String userName;
 
-    private NioStudyChatClient() {
+    private NioStudyChatClient1() {
         try {
             //打开选择器
             this.selector = Selector.open();
@@ -84,7 +84,7 @@ public class NioStudyChatClient {
     }
 
     public static void main(String[] args) {
-        NioStudyChatClient client = new NioStudyChatClient();
+        NioStudyChatClient1 client = new NioStudyChatClient1();
         new Thread(() -> {
             while (true) {
                 client.readMsg();
