@@ -60,7 +60,9 @@ public class NioStudyChatServer {
                             // 设置为非阻塞
                             socketChannel.configureBlocking(false);
                             // 注册到选择器中
-                            socketChannel.register(selector, SelectionKey.OP_READ);
+                            // 创建缓冲区
+                            ByteBuffer byteBuffer = ByteBuffer.allocate(10);
+                            socketChannel.register(selector, SelectionKey.OP_READ, byteBuffer);
                             System.out.println(socketChannel.getRemoteAddress() + "上线了~");
                         }
                         if (key.isReadable()) {
@@ -83,11 +85,10 @@ public class NioStudyChatServer {
         try {
             // 从selectionKey中获取channel
             socketChannel = (SocketChannel) selectionKey.channel();
-            // 创建缓冲区
-            ByteBuffer byteBuffer = ByteBuffer.allocate(10);
-            while (true) {
 
+            while (true) {
                 //把通道的数据写入到缓冲区,判断返回的count是否大于0，大于0表示读取到了数据
+                ByteBuffer byteBuffer = (ByteBuffer) selectionKey.attachment();
                 int count = socketChannel.read(byteBuffer);
                 if (count < 1) {
                     // 如果关闭了，就无法监听到这个channel下的读事件了
@@ -97,23 +98,19 @@ public class NioStudyChatServer {
 
                     break;
                 }
-
                 // 切换为读模式
-                byteBuffer.flip();
-                byte[] bytes = new byte[byteBuffer.remaining()];
-                int i = 0;
-                while (byteBuffer.hasRemaining()) {
-                    bytes[i] = byteBuffer.get();
-                    i++;
+                ByteBufferStudy.spilt(byteBuffer);
+                if (byteBuffer.position() == byteBuffer.limit()) {
+                    ByteBuffer newByteBuffer = ByteBuffer.allocate(byteBuffer.capacity() << 1);
+                    byteBuffer.flip();
+                    newByteBuffer.put(byteBuffer);
+                    selectionKey.attach(newByteBuffer);
                 }
-                String msg = new String(bytes, StandardCharsets.UTF_8);
-                System.out.println("from client:" + msg);
-                System.out.println(msg.length());
-                notifyAllClient(msg, socketChannel);
-                // 切换为写模式
-                byteBuffer.clear();
+
+//                notifyAllClient(msg, socketChannel);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             try {
                 if (socketChannel == null) {
                     return;
