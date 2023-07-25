@@ -65,8 +65,9 @@ public class NioStudyChatMutliServer {
                             // 注册到选择器中
                             // 创建缓冲区
                             worker.register(socketChannel);
+                            it.remove();
                         }
-                        it.remove();
+
                     }
                 } else {
                     System.out.println("等待......");
