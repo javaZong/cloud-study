@@ -13,6 +13,7 @@
         <module>cloud-search</module>
         <module>cloud-common</module>
         <module>netty-study</module>
+        <module>demo</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -4,6 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 @Configuration
 public class DemoConfig {
 
@@ -21,6 +25,12 @@ public class DemoConfig {
         threadPoolExecutor.setQueueCapacity(maxPoolSize * 50); // 队列程度
         threadPoolExecutor.setKeepAliveSeconds(300);// 线程空闲时间
         threadPoolExecutor.setThreadNamePrefix("coop-goup-"); // 线程名字前缀
+        return threadPoolExecutor;
+    }
+
+    @Bean(name = "cloudThreadPoolExecutor")
+    public ThreadPoolExecutor cloudThreadPoolExecutor() {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10,20,60, TimeUnit.MINUTES,new LinkedBlockingQueue<>(10),new ThreadPoolExecutor.CallerRunsPolicy());
         return threadPoolExecutor;
     }
 }
